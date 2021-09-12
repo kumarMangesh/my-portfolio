@@ -142,6 +142,7 @@ width: 100%;
 /* project grid section start*/
 .projects{
     margin:2rem;
+    /* background-image: url(sectionback.jpg); */
 }
 .project-title{
     margin:3rem;

@@ -5,7 +5,7 @@ let newdiv = document.getElementById("attach")
 let input = document.querySelectorAll(".input")
 
 
-let validation = function (onclick) {
+let validation = function () {
     let username = document.getElementById("name").value;
     let useremail = document.getElementById("email").value;
     let message=document.getElementById("message").value;
@@ -62,24 +62,35 @@ let validation = function (onclick) {
             "email": useremail,
             "message":message
         })
-        console.log(myarr)
+        let myarrstring=JSON.stringify(myarr)
+        console.log(myarrstring)
 
-        // submit.addEventListener("click", onclick());
 
+        function onclick() {
+            console.log("submit clicked")
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://formspree.io/f/xnqllyyv", true);
+            xhr.setRequestHeader("Content-type", 'application/JSON');
+            xhr.onprogress = function () {
+                console.log('on progress');
+            }
+            xhr.send(myarrstring);
+        }
         onclick()
+        // submit.addEventListener("click", onclick());
     }
 }
 
-function onclick() {
-    console.log("submit clicked")
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', "https://formspree.io/f/xnqllyyv", true);
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.onprogress = function () {
-        console.log('on progress');
-    }
-    xhr.send(myarr);
-}
+// function onclick() {
+//     console.log("submit clicked")
+//     const xhr = new XMLHttpRequest();
+//     xhr.open('POST', "https://formspree.io/f/xnqllyyv", true);
+//     xhr.setRequestHeader('Content-type', 'application/json');
+//     xhr.onprogress = function () {
+//         console.log('on progress');
+//     }
+//     xhr.send(myarr);
+// }
 
 submit.addEventListener('click', validation)
 
